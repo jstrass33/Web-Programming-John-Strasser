@@ -1,5 +1,6 @@
 from bottle import debug, route, run, template, debug, post, get, request,response, redirect
 import dataset
+from bottle import default_app
 
 
 #http://localhost:8068/foobar
@@ -118,8 +119,14 @@ def post_edit():
     return template("counter", count=count)
 
 #run = fake web server that is used to run in dev. DONT USE IN PROD SERVER ENVIRONMENT
-debug(True)
-run (host="localhost", port=8098, reloader=True)
+#debug(True)
+if __name__ == "__main__":
+    debug(True)
+
+    run(host="localhost", port=8080)
+    run()
+else:
+    application = default_app()
 #WSGI = protocol allows the top end to talk to the bottom end.
 #NgX = other webserver
 
