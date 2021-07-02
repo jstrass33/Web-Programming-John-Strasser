@@ -5,6 +5,8 @@ from netmiko import Netmiko
 from paramiko.ssh_exception import SSHException
 from netmiko.ssh_exception import AuthenticationException
 
+from bottle import default_app
+
 import re
 
 from bottle import debug, route, run, template, debug, post, get, request,response, redirect, auth_basic
@@ -190,5 +192,10 @@ def post_switch_data():
 
     return template("response.tpl", data=thisdict, hostname=hostname, uptime=uptime)
 
-debug(True)
-run (host="localhost", port=8098, reloader=True)
+if __name__ == "__main__":
+    debug(True)
+
+    run(host="localhost", port=8989)
+    run()
+else:
+    application = default_app()

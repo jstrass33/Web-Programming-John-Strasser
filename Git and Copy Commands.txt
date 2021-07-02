@@ -7,3 +7,6 @@ git commit -m "comment"
 git push
 
 cp -r ~ "Then file path?"
+
+
+
