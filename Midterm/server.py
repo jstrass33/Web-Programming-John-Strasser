@@ -1,4 +1,4 @@
-from bottle import route, get, post, run, template, debug, request, response, redirect
+from bottle import route, get, post, run, template, debug, request, response, redirect, static_file
 import dataset
 import json
 from bottle import default_app
@@ -68,6 +68,11 @@ def get_delete(id):
     items = [ dict(x) for x in list(items) ]
 
     return template("midterm.tpl", items=items)
+
+@route('/static/<filename>')
+def server_static(filename):
+
+    return static_file(filename, root='./static')
 
 @route("/data")
 def get_data():
