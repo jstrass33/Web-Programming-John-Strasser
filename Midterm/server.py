@@ -2,8 +2,14 @@ from bottle import route, get, post, run, template, debug, request, response, re
 import dataset
 import json
 from bottle import default_app
+from dataset.types import MYSQL_LENGTH_TYPES
 
 # http://localhost:8080/
+
+
+
+
+message = None
 
 @route("/")
 def get_todo_list():
@@ -23,11 +29,13 @@ def get_midterm():
     hobby_table = hobby_list_db.get_table('hobby')
     items = hobby_table.find()
     items = [ dict(x) for x in list(items) ]
-
-    return template("midterm.tpl", items=items)
+    tpl = template("midterm.tpl", items=items)
+    message=None
+    return tpl
 
 @post("/midterm")
 def post_midterm():
+    global message 
     hobby = request.forms.get('newhobby')
     years = request.forms.get('years')
     print(hobby)
@@ -43,6 +51,7 @@ def post_midterm():
         response.status="409 Bad Request:"+str(e)
         return
 
+    message="A new hobby has been added."
     
     return redirect("/midterm")
 

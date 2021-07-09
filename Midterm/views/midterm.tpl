@@ -33,6 +33,9 @@
     <div style="background-color: gold;" class="pt-0 my-0">
     <h3>A list of some of my hobbies</h3> 
     </div>
+    
+    
+   
 <table class="table table-striped table-hover">
   <tr class="text-white" style="background-color: rgb(77, 94, 248);">
     <th>Hobby</th>
