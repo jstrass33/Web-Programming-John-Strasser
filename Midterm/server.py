@@ -43,12 +43,8 @@ def post_midterm():
         response.status="409 Bad Request:"+str(e)
         return
 
-    hobby_list_db = dataset.connect('sqlite:///hobby_list.db')
-    hobby_table = hobby_list_db.get_table('hobby')
-    items = hobby_table.find()
-    items = [ dict(x) for x in list(items) ]
-
-    return template("midterm.tpl", items=items)
+    
+    return redirect("/midterm")
 
 @route("/delete_hobby/<id>")
 def get_delete(id):
@@ -62,12 +58,9 @@ def get_delete(id):
         response.status="409 Bad Request:"+str(e)
         return
     
-    hobby_list_db = dataset.connect('sqlite:///hobby_list.db')
-    hobby_table = hobby_list_db.get_table('hobby')
-    items = hobby_table.find()
-    items = [ dict(x) for x in list(items) ]
+   
 
-    return template("midterm.tpl", items=items)
+    return redirect("/midterm")
 
 @route('/static/<filename>')
 def server_static(filename):

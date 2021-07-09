@@ -29,9 +29,12 @@
 </head>
 <body>
     %include banner
+    
+    <div style="background-color: gold;" class="pt-0 my-0">
     <h3>A list of some of my hobbies</h3> 
+    </div>
 <table class="table table-striped table-hover">
-  <tr class="thead-dark">
+  <tr class="text-white" style="background-color: rgb(77, 94, 248);">
     <th>Hobby</th>
     <th>Years Spent Doing Activity</th>
     <th>Delete?</th>
@@ -57,12 +60,13 @@
     <input type="text" name="years" id="years" class="form-control" required/>
     </div>
     <div style="text-align: center;">
-    <button type="submit" name="submit" id="submit" class="btn btn-primary" value="Add a New Hobby" onclick="loading()">Add a New Hobby</button>
+    <button type="submit" name="submit" id="submit" class="btn btn-warning" value="Add a New Hobby" onclick="loading()"><strong>Add a New Hobby</strong></button>
     </div>
 </form>
 
-
-<button class="btn btn-primary" data-toggle="collapse" data-target="#demo" id="demo1">Show National Park Photography</button>
+<label>Click Button and Scroll Down to See Photos</label>
+</br>
+<button class="btn btn-primary" data-toggle="collapse" data-target="#demo" id="demo1"><Strong>Show National Park Photography</Strong></button>
 
 <div id="demo" class="collapse">
 <h4 id=nationalpark>National Park Photography</h4>
