@@ -33,7 +33,12 @@
     <div style="background-color: gold;" class="pt-0 my-0">
     <h3>A list of some of my hobbies</h3> 
     </div>
-    
+    %if message:
+        %include('alert.tpl', message=message) 
+    %end
+    %if message2:
+        %include('alert_deleted.tpl', message2=message2) 
+    %end
     
    
 <table class="table table-striped table-hover">

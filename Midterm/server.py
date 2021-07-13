@@ -9,7 +9,8 @@ from dataset.types import MYSQL_LENGTH_TYPES
 
 
 
-message = None
+message=None
+message2=None
 
 @route("/")
 def get_todo_list():
@@ -24,18 +25,22 @@ def get_todo_list():
 @route("/midterm")
 def get_midterm():
     
-
+    global message
+    global message2
     hobby_list_db = dataset.connect('sqlite:///hobby_list.db')
     hobby_table = hobby_list_db.get_table('hobby')
     items = hobby_table.find()
     items = [ dict(x) for x in list(items) ]
-    tpl = template("midterm.tpl", items=items)
+    tpl = template("midterm.tpl", items=items, message=message, message2=message2)
     message=None
+    message2=None
     return tpl
 
 @post("/midterm")
 def post_midterm():
-    global message 
+    global message
+    message = "A hobby was added"
+    
     hobby = request.forms.get('newhobby')
     years = request.forms.get('years')
     print(hobby)
@@ -51,12 +56,14 @@ def post_midterm():
         response.status="409 Bad Request:"+str(e)
         return
 
-    message="A new hobby has been added."
+    
     
     return redirect("/midterm")
 
 @route("/delete_hobby/<id>")
 def get_delete(id):
+    global message2
+    message2 = "A hobby was deleted"
     id = int(id)
     try:
         hobby_list_db = dataset.connect('sqlite:///hobby_list.db')
