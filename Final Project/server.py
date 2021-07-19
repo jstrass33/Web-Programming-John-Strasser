@@ -24,23 +24,24 @@ def get_todo_list():
 @route("/comments")
 def get_comments():
     nationalpark_db = dataset.connect('sqlite:///nationalpark.db')
-    yosemite_table = nationalpark_db.get_table('yosemite')
-    items = yosemite_table.find()
+    nationalpark_table = nationalpark_db.get_table('yosemite')
+    items = nationalpark_table.find()
     items = [ dict(x) for x in list(items) ]
     yosemite='yosemite'
+    commentsnumber=len(items)
 
-    return template("comments", items=items, nationalpark=yosemite)
+    return template("comments", items=items, nationalpark=yosemite, commentsnumber=commentsnumber)
 
 @post("/comments")
 def post_comments():
-
+    nationalpark = request.forms.get('nationalpark')
     username = request.forms.get('username')
     comment = request.forms.get('comment')
-    
+    print(nationalpark)
     try:
         nationalpark_db = dataset.connect('sqlite:///nationalpark.db')
-        yosemite_table = nationalpark_db.get_table('yosemite')
-        yosemite_table.insert({
+        nationalpark_table = nationalpark_db.get_table(nationalpark)
+        nationalpark_table.insert({
             'username' : username.strip(),
             'comment' : comment.strip()
         })
@@ -56,9 +57,9 @@ def get_delete(nationalpark,id):
 
     try:
         nationalpark_db = dataset.connect('sqlite:///nationalpark.db')
-        yosemite_table = nationalpark_db.get_table(nationalpark)
+        nationalpark_table = nationalpark_db.get_table(nationalpark)
         print(f"We need to delete id# {id}...")
-        yosemite_table.delete(id=id)
+        nationalpark_table.delete(id=id)
     except Exception as e:
         response.status="409 Bad Request:"+str(e)
         return
