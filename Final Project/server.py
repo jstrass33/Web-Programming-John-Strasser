@@ -21,6 +21,11 @@ def get_todo_list():
 
     return template("todo_list", items=items)
 
+@route("/travelblog")
+def get_travelblog():
+
+    return template("travelblog.tpl")
+
 @route("/comments")
 def get_comments():
     nationalpark_db = dataset.connect('sqlite:///nationalpark.db')
