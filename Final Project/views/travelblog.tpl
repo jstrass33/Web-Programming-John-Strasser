@@ -2,7 +2,8 @@
 <head>
     %include header
     <style>
-        #main{
+        
+        .main{
             height: 1200px;
 
             text-align: center;
@@ -10,10 +11,10 @@
             background-size: 100% 100%;
         
 
-        }
+        } 
         #transparent{
             background-color: rgba(255,255,255,0.6);
-            height: 300px;
+            height: 100%;
         }
         #nav{
             height: 75px;
@@ -28,6 +29,10 @@
         a{
             color:gold;
         }
+
+        .caption{
+            background-color: rgba(255,255,255,0.6);
+        }
         
 
     </style>
@@ -38,26 +43,63 @@
 
 
 
+    %include banner
 
-<div class="row" id="nav">
-    <div class="col-sm" style="text-align: center; margin:auto">
-      <a href="www.google.com">  <b>Photo Gallery</b> </a>
-    </div>
-    <div class="col-sm" style="text-align: center; margin:auto">
-       <a href="www.google.com"><b> Hiking Tips Per Park</b></a>
-    </div>
-    <div class="col-sm"style="text-align: center; margin:auto">
-       <a href="www.google.com"><b>John's Top Hikes</b></a>
-    </div>
-  </div>
-
-  <div id="main" class="jumbotron"> 
+  <div id="main" class="jumbotron main"> 
       <div id="transparent">
-      <h1 style="padding-top: 100px;">Higher View's</h1>
-     <h3 style="padding-top: 25px;">John's Advice for North American Hiking</h3>
-     </div>
-  </div>
+        <h1 style="padding-top: 100px;">John's Higher View's</h1>
+        <h3 style="padding-top: 25px;">Click the Below Photos for Photo Albums from Each National Park</h3>
+     
   
+
+        
+        
+        <div id="demo" class="carousel slide" data-ride="carousel" style="height: 700; width: 1000; margin: auto;">
+
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+        
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a href="/banff"><img src="/static/Peyto Lake.jpg") alt="Los Angeles" class="img-fluid float-left"> </a>
+                <div class="carousel-caption caption">
+                    <h3 style="color: black;">Banff National Park</h3>
+                    <p style="color: black;">Click photo to see the full album</p>
+                  </div>
+            </div>
+            <div class="carousel-item">
+                <a href="/yosemite"><img src="/static/Yosemite.jpg" alt="Chicago" class="img-fluid float-left"></a>
+                <div class="carousel-caption caption">
+                    <h3 style="color: black;">Yosemite National Park</h3>
+                    <p style="color: black;">Click photo to see the full album</p>
+                  </div>
+            </div>
+            <div class="carousel-item">
+               <a href="/northcascades"> <img src="/static/hiddenlake.JPG" alt="New York" class="img-fluid float-left"></a>
+                <div class="carousel-caption caption">
+                    <h3 style="color: black;">North Cascades National Park</h3>
+                    <p style="color: black;">Click photo to see the full album</p>
+                  </div>
+            </div>
+            </div>
+        
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            </a>
+        
+        </div>
+    </div>
+
+</div>
 </body>
 
 <script>
