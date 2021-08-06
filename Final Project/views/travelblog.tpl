@@ -47,14 +47,14 @@
 
   <div id="main" class="jumbotron main"> 
       <div id="transparent">
-        <h1 style="padding-top: 100px;">John's Higher View's</h1>
+        <h1 style="padding-top: 25px;">John's Higher Views</h1>
         <h3 style="padding-top: 25px;">Click the Below Photos for Photo Albums from Each National Park</h3>
      
   
 
         
         
-        <div id="demo" class="carousel slide" data-ride="carousel" style="height: 700; width: 1000; margin: auto;">
+        <div id="demo" class="carousel slide" data-ride="carousel" style="height: 600; width: 900; margin: auto;">
 
             <!-- Indicators -->
             <ul class="carousel-indicators">
@@ -68,21 +68,21 @@
             <div class="carousel-item active">
                 <a href="/banff"><img src="/static/Peyto Lake.jpg") alt="Los Angeles" class="img-fluid float-left"> </a>
                 <div class="carousel-caption caption">
-                    <h3 style="color: black;">Banff National Park</h3>
+                    <h3 style="color: black; padding-bottom: 20px;">Banff National Park</h3>
                     <p style="color: black;">Click photo to see the full album</p>
                   </div>
             </div>
             <div class="carousel-item">
                 <a href="/yosemite"><img src="/static/Yosemite.jpg" alt="Chicago" class="img-fluid float-left"></a>
                 <div class="carousel-caption caption">
-                    <h3 style="color: black;">Yosemite National Park</h3>
+                    <h3 style="color: black; padding-bottom: 20px;">Yosemite National Park</h3>
                     <p style="color: black;">Click photo to see the full album</p>
                   </div>
             </div>
             <div class="carousel-item">
                <a href="/northcascades"> <img src="/static/hiddenlake.JPG" alt="New York" class="img-fluid float-left"></a>
                 <div class="carousel-caption caption">
-                    <h3 style="color: black;">North Cascades National Park</h3>
+                    <h3 style="color: black; padding-bottom: 20px;">North Cascades National Park</h3>
                     <p style="color: black;">Click photo to see the full album</p>
                   </div>
             </div>

@@ -43,5 +43,9 @@
 
     </form>
 
+    <div style="padding-top: 25px">
+        <a href="/forgot"> <input type="button" value="Forgot Password?" class="btn btn-secondary" /> </a>
+     </div>
+
 </div>
 </html>
