@@ -313,6 +313,18 @@ def send_reset_email(username):
         server.sendmail(sender, receiver, message.as_string())
 
     return
+def connect_to_db(nationalpark):
+    nationalpark_db = dataset.connect('sqlite:///nationalpark.db')
+    nationalpark_table = nationalpark_db.get_table(nationalpark)
+    items = nationalpark_table.find()
+    items = [ dict(x) for x in list(items) ]
+    
+    #Countings the number of comments
+    commentsnumber=len(items)
+    #Inverts the dictionary list so the most recent comments show up first
+    items = reversed(items)
+
+    return commentsnumber,items
 
 @get("/signup")
 def get_signup():
@@ -445,9 +457,9 @@ def get_banff():
     session = get_session(request)
     user=session['username'] 
 
-    
+    error=''
 
-    return template("yosemite.tpl",  items=items, nationalpark=yosemite, commentsnumber=commentsnumber, user=user)
+    return template("yosemite.tpl",  items=items, nationalpark=yosemite, commentsnumber=commentsnumber, user=user, error=error)
 
 @route("/banff")
 def get_banff():
@@ -607,10 +619,14 @@ def post_comments():
     nationalpark = request.forms.get('nationalpark')
     session = get_session(request)
     username=session['username'] 
+    if username == '':
+        print('You muse be signed in to make a comment.')
+        
+        return redirect('/'+nationalpark)
     comment = request.forms.get('comment')
     print(nationalpark)
     now = datetime.now()
-    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
     try:
         nationalpark_db = dataset.connect('sqlite:///nationalpark.db')
         nationalpark_table = nationalpark_db.get_table(nationalpark)

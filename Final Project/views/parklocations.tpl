@@ -53,30 +53,34 @@
 
         function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 41.505493 , lng: -81.681290 },
-            zoom: 8,
+            center: { lat: 39.056198 , lng: -95.695312 },
+            zoom: 4,
             });
         
         google.maps.event.addDomListener(document.getElementById('yosemite'), 'click', function () {
 
-        map.setCenter(new google.maps.LatLng(37.865101,-119.538330));
-            });
+            map.setCenter(new google.maps.LatLng(37.865101,-119.538330));
+            map.setZoom(8);
+                });
             
         
             google.maps.event.addDomListener(document.getElementById('banff'), 'click', function () {
 
             map.setCenter(new google.maps.LatLng(51.180202,-115.565704));
+            map.setZoom(8);
             });
             
 
             google.maps.event.addDomListener(document.getElementById('northcascades'), 'click', function () {
 
             map.setCenter(new google.maps.LatLng(48.6999972 ,-121.1999992));
+            map.setZoom(8);
             });
 
             google.maps.event.addDomListener(document.getElementById('olympic'), 'click', function () {
 
             map.setCenter(new google.maps.LatLng(47.802109 ,-123.604355));
+            map.setZoom(8);
             });
 
             }

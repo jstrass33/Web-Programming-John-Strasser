@@ -39,7 +39,7 @@
         
         <br>
 
-        <input type="submit" value="Sign-Up" class="btn btn-primary"/>
+        <button type="submit" id="submit" value="Sign-Up" class="btn btn-primary" onclick="loading()"><strong>Sign-Up</strong></button>
 
     </form>
 
@@ -48,4 +48,21 @@
      </div>
 
 </div>
+
+<script>
+
+    function loading(){
+          const element = document.getElementById("submit");
+          const span = document.createElement("span");
+          
+          span.classList.add("spinner-border"); 
+          span.classList.add("spinner-border-sm"); 
+          
+          element.innerHTML = "Loading...    ";
+          element.appendChild(span);
+          
+          
+        }
+      
+      </script>
 </html>

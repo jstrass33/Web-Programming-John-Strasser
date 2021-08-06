@@ -107,7 +107,7 @@
     <b>Add Comment </b><br>
     <textarea type="text" name="comment" class='media-body' style="width:800px; margin:0 auto; border-style: groove; margin-bottom: 10px; height: 100px;">Enter a new comment...</textarea><br>
     <hr/>
-    <input type="submit" class="btn btn-primary"value="Submit"/>
+    <button type="submit" id="submit"class="btn btn-primary"value="Submit" onclick="loading()"><strong>Submit</strong></button>
     </form>
 
 <p style="text-align: center;"><b>{{commentsnumber}} New Comments </b></p>
@@ -124,13 +124,14 @@
     
    <p style="padding-left: 75px;">
     {{item['comment']}}
-    %if user in item['username']:
-    <a href="/delete/{{nationalpark}}/{{item['id']}}" style="float: right; margin-right: 10px;"><span class="material-icons">
-        delete
-        </span></a>
-    </p>
+    %if user != '':
+        %if user in item['username']:
+        <a href="/delete/{{nationalpark}}/{{item['id']}}" style="float: right; margin-right: 10px;"><span class="material-icons">
+            delete
+            </span></a>
+        </p>
 
-   
+    %end
    %end
 
 </div>

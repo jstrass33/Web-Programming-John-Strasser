@@ -35,14 +35,30 @@
         <label><b>Password</b></label><br/>
         <input type="password" name="password"/><br/>
         <br>
-        <input type="submit" value="Login" class="btn btn-primary"/>
+        <button type="submit" id="submit"value="Login" class="btn btn-primary" onclick="loading()"><strong>Login</strong></button>
 
     </form>
 
     <div style="padding-top: 25px">
        <a href="/forgot"> <input type="button" value="Forgot Password?" class="btn btn-secondary" /> </a> <br> <br>
-       <a href="/signup"> <input type="button" value="Click to Sign-Up" class="btn btn-secondary" /> </a>
+       <a href="/signup"> <input type="button" value="Click to Sign-Up" class="btn btn-secondary"/> </a>
     </div>
 
 </div>
+<script>
+
+function loading(){
+      const element = document.getElementById("submit");
+      const span = document.createElement("span");
+      
+      span.classList.add("spinner-border"); 
+      span.classList.add("spinner-border-sm"); 
+      
+      element.innerHTML = "Loading...    ";
+      element.appendChild(span);
+      
+      
+    }
+  
+  </script>
 </html>
