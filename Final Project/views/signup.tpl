@@ -19,14 +19,14 @@
 
 
 <div id="main" class="jumbotron main"> 
+    
     <div id="transparent">
+        %if error != '':
+            %include alert
+        %end
       <h1 style="padding-top: 100px;">John's Higher View's Sign-up</h1>
 
-      %if error == "Your Passwords did Not Match - Try Again":
-        <br>
-        <br>
-        <h2 style="color:red;">{{error}}</h2>
-      %end
+     
     <form action="/signup" method="post" class="form" style="text-align: center; padding-top: 100px;">
         <label><b>Username:</b></label><br/>
         <input type="text" name="username"/><br/>
@@ -39,7 +39,7 @@
         
         <br>
 
-        <input type="submit" value="Login" class="btn btn-primary"/>
+        <input type="submit" value="Sign-Up" class="btn btn-primary"/>
 
     </form>
 

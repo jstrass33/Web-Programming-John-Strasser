@@ -37,7 +37,8 @@
 
             }
         #located{
-            height: 100px;
+            height: 75px;
+            padding-top: 10px;
         }
     </style>
    <script
@@ -52,7 +53,7 @@
 
         function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 48.6999972 , lng: -121.1999992 },
+            center: { lat: 41.505493 , lng: -81.681290 },
             zoom: 8,
             });
         
@@ -72,23 +73,31 @@
 
             map.setCenter(new google.maps.LatLng(48.6999972 ,-121.1999992));
             });
+
+            google.maps.event.addDomListener(document.getElementById('olympic'), 'click', function () {
+
+            map.setCenter(new google.maps.LatLng(47.802109 ,-123.604355));
+            });
+
             }
 
 </script>
 </head>
 <body>
     %include banner
-    <div id ="located" class="jumbotron" style="background-color: yellow;"> 
+    <div id ="located" class="jumbotron" style="background-color: gold;"> 
         
           <h1 style="text-align: center; color: black;">Where are these Park's  Located?</h1>
 
     </div>
     <div style="text-align: center;">
-    <input id="yosemite" type="button" value="Show Yosemite" onclick="" style="margin:0"/>
+    <input id="yosemite" type="button" value="Show Yosemite" class="btn btn-secondary" onclick="" style="margin:0"/>
 
-    <input id="banff" type="button" value="Show Banff" onclick="" style="margin:0"/>
+    <input id="banff" type="button" value="Show Banff" class="btn btn-secondary" onclick="" style="margin:0"/>
 
-    <input id="northcascades" type="button" value="Show North Cascades" onclick="" style="margin:0"/>
+    <input id="northcascades" type="button" value="Show North Cascades" class="btn btn-secondary" onclick="" style="margin:0"/>
+
+    <input id="olympic" type="button" value="Show Olympic" class="btn btn-secondary" onclick="" style="margin:0"/>
 
     </div>
     <br>

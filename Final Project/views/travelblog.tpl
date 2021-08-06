@@ -61,6 +61,7 @@
             <li data-target="#demo" data-slide-to="0" class="active"></li>
             <li data-target="#demo" data-slide-to="1"></li>
             <li data-target="#demo" data-slide-to="2"></li>
+            <li data-target="#demo" data-slide-to="3"></li>
             </ul>
         
             <!-- The slideshow -->
@@ -86,6 +87,15 @@
                     <p style="color: black;">Click photo to see the full album</p>
                   </div>
             </div>
+            
+            <div class="carousel-item">
+                <a href="/olympic"> <img src="/static/hurricaneflowers.JPG" alt="New York" class="img-fluid float-left"></a>
+                 <div class="carousel-caption caption">
+                     <h3 style="color: black; padding-bottom: 20px;">Olympic National Park</h3>
+                     <p style="color: black;">Click photo to see the full album</p>
+                   </div>
+             </div>
+
             </div>
         
             <!-- Left and right controls -->

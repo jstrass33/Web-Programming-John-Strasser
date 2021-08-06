@@ -18,15 +18,16 @@
 </style>
 
 
+
 <div id="main" class="jumbotron main"> 
+    
     <div id="transparent">
+        %if error != '':
+            %include alert
+        %end
       <h1 style="padding-top: 100px;">John's Higher View's Login</h1>
 
-      %if error != '':
-        <br>
-        <br>
-        <h2 style="color:red;">{{error}}</h2>
-      %end
+    
 
     <form action="/login" method="post" class="form" style="text-align: center; padding-top: 100px;">
         <label><b>Username </b></label><br/>

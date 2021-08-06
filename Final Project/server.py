@@ -16,15 +16,34 @@ from email.mime.text import MIMEText
 
 from datetime import datetime
 
+import base64
+
 # http://localhost:8080/
 
 
 ##################Note to JOhn - Left Off at Mail Trap Send Verification Email Part. Supposed to Send to User... but sending to mail trap instead? Odd
 
-message=None
-message2=None
+email = "anN0cmFzczMzQGdtYWlsLmNvbQ=="
+email_bytes = email.encode("ascii")
+email_bytes = base64.b64decode(email_bytes)
+email_string = email_bytes.decode("ascii")
+
+email_john=email_string
+
+emailp = "dnZkdnFmZ2Jld2ljZHVycA=="
+emailp_bytes = emailp.encode("ascii")
+  
+emailp_bytes = base64.b64decode(emailp_bytes)
+emailp_string = emailp_bytes.decode("ascii")
+
+emailp=emailp_string
 
 def send_verification_email(username):
+    
+
+    global email_john
+    global emailp
+    
     #This finds the json file that contains the user information that the user just sumbmitted via the form
     print(username)
     user = get_user(username)
@@ -80,12 +99,15 @@ def send_verification_email(username):
     message["From"] = sender
     message["To"] = receiver
 
+    print("About to print email....")
+    print(email_bytes)
+    print(emailp)
     message.attach(MIMEText(text,"plain"))
     message.attach(MIMEText(html,"html"))
     context = ssl.create_default_context()
     #Sends the email using the mail trap could service. I updated the login with my personal credentials provided by mail trap.
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-        server.login("jstrass33@gmail.com", "vvdvqfgbewicdurp")
+        server.login(email_john, emailp)
         server.sendmail(sender, receiver, message.as_string())
 
     print("sent mail at the end of mail function")
@@ -225,6 +247,8 @@ def verify_password(password, credentials):
     return new_key == key
 
 def send_reset_email(username):
+    global email_john
+    global emailp
     #Checks the user file for the username provided by the user.
     user = get_user(username)
     if not user:
@@ -285,7 +309,7 @@ def send_reset_email(username):
     context = ssl.create_default_context()
     #Sends the email using the mail trap could service. I updated the login with my personal credentials provided by mail trap.
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-        server.login("jstrass33@gmail.com", "vvdvqfgbewicdurp")
+        server.login(email_john, emailp)
         server.sendmail(sender, receiver, message.as_string())
 
     return
@@ -413,7 +437,9 @@ def get_banff():
     items = nationalpark_table.find()
     items = [ dict(x) for x in list(items) ]
     yosemite='yosemite'
+    #Counts the number of comments
     commentsnumber=len(items)
+    #Inverts the dictionary list so the most recent comments show up first
     items = reversed(items)
 
     session = get_session(request)
@@ -430,7 +456,9 @@ def get_banff():
     nationalpark_table = nationalpark_db.get_table('banff')
     items = nationalpark_table.find()
     items = [ dict(x) for x in list(items) ]
+    #Counting the number of comments
     commentsnumber=len(items)
+    #Inverts the dictionary list so the most recent comments show up first
     items = reversed(items)
     banff='banff'
     
@@ -448,13 +476,33 @@ def get_northcascades():
     items = nationalpark_table.find()
     items = [ dict(x) for x in list(items) ]
     northcascades='northcascades'
+    #Countings the number of comments
     commentsnumber=len(items)
+    #Inverts the dictionary list so the most recent comments show up first
     items = reversed(items)
 
     session = get_session(request)
     user=session['username'] 
 
     return template("northcascades.tpl",  items=items, nationalpark=northcascades, commentsnumber=commentsnumber, user=user)
+
+@route("/olympic")
+def get_northcascades():
+
+    nationalpark_db = dataset.connect('sqlite:///nationalpark.db')
+    nationalpark_table = nationalpark_db.get_table('olympic')
+    items = nationalpark_table.find()
+    items = [ dict(x) for x in list(items) ]
+    olympic='olympic'
+    #Countings the number of comments
+    commentsnumber=len(items)
+    #Inverts the dictionary list so the most recent comments show up first
+    items = reversed(items)
+
+    session = get_session(request)
+    user=session['username'] 
+
+    return template("olympic.tpl",  items=items, nationalpark=olympic, commentsnumber=commentsnumber, user=user)
 
 @get("/verify/<token>")
 #THis route takes the URL sent by the verify email route and when clicked it initiates the below function. The token is the variable assigned to the end of that URL
@@ -599,6 +647,12 @@ def get_delete(nationalpark,id):
 def server_static(filename):
 
     return static_file(filename, root='./static')
+
+@route("/drawing")
+def get_drawing():
+
+
+    return template("drawing")
 
 
 if __name__ == "__main__":
