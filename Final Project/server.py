@@ -530,6 +530,9 @@ def get_verify(token):
     username = session['username']
     #Gets the user's json file
     user = get_user(username)
+    if user == None:
+        error = "You have to be logged in while verifying your email."
+        return template("login", error=error)
     print(token)
     print(user)
     #This then checks to see if the token that was stored initially in the user's json file matches what was recieved in the route.
