@@ -188,7 +188,9 @@ def read(key):
     return data
 
 def save_user_data(name, data):
+    #Ensures the data is a dictionary
     assert type(data) is dict
+    #opens the the user file and saves any changes in json format.
     with open(f"finalproject_data/finalproject_user.{name}.json", "w") as f:
         json.dump(data,f)
     return
@@ -407,6 +409,7 @@ def post_login():
 
 @route("/")
 def get_travelblog():
+    #Needed to get the variable from the session for who was logged in.
     session = get_session(request)
     user=session['username'] 
 
@@ -434,16 +437,15 @@ def post_signup():
 
 @route("/parklocations")
 def get_locations():
+    #Takes in the user from the session data and renders the park location template.
     session = get_session(request)
     user=session['username'] 
     return template("parklocations.tpl", user=user)
-@route("/parklocations2")
-def get_locations():
 
-    return template("parklocations2.tpl")
 @route("/yosemite")
 def get_banff():
     #Connects to the DB and pulls into from the banff table
+    #I created seperate tables in the database for each album so the comments would be seperate
     nationalpark_db = dataset.connect('sqlite:///nationalpark.db')
     nationalpark_table = nationalpark_db.get_table('yosemite')
     items = nationalpark_table.find()
@@ -464,6 +466,7 @@ def get_banff():
 @route("/banff")
 def get_banff():
     #Connects to the DB and pulls into from the banff table
+    #I created seperate tables in the database for each album so the comments would be seperate
     nationalpark_db = dataset.connect('sqlite:///nationalpark.db')
     nationalpark_table = nationalpark_db.get_table('banff')
     items = nationalpark_table.find()
@@ -482,7 +485,8 @@ def get_banff():
 
 @route("/northcascades")
 def get_northcascades():
-
+    #Connects to the DB and pulls into from the banff table
+    #I created seperate tables in the database for each album so the comments would be seperate
     nationalpark_db = dataset.connect('sqlite:///nationalpark.db')
     nationalpark_table = nationalpark_db.get_table('northcascades')
     items = nationalpark_table.find()
@@ -500,7 +504,8 @@ def get_northcascades():
 
 @route("/olympic")
 def get_northcascades():
-
+    #Connects to the DB and pulls into from the banff table
+    #I created seperate tables in the database for each album so the comments would be seperate
     nationalpark_db = dataset.connect('sqlite:///nationalpark.db')
     nationalpark_table = nationalpark_db.get_table('olympic')
     items = nationalpark_table.find()
@@ -616,18 +621,24 @@ def get_logout():
 
 @post("/comments")
 def post_comments():
+    #Gets the nationation park variable from the hidden form input on the template
     nationalpark = request.forms.get('nationalpark')
     session = get_session(request)
     username=session['username'] 
+    #Makes sure that only a user logged in can make a comment
     if username == '':
         print('You muse be signed in to make a comment.')
         
         return redirect('/'+nationalpark)
+    #Grabs the comment from the text box
     comment = request.forms.get('comment')
     print(nationalpark)
+    #Grabs the current date
     now = datetime.now()
+    #Formats the current date
     dt_string = now.strftime("%m/%d/%Y %H:%M:%S")
     try:
+        #connects to the DB and adds the comment entry to it.
         nationalpark_db = dataset.connect('sqlite:///nationalpark.db')
         nationalpark_table = nationalpark_db.get_table(nationalpark)
         nationalpark_table.insert({
@@ -644,6 +655,7 @@ def post_comments():
 
 @route("/delete/<nationalpark>/<id>")
 def get_delete(nationalpark,id):
+    #Takes the nationalpark and ID variable from the template
     id = int(id)
 
     try:
