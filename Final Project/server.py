@@ -23,26 +23,12 @@ import base64
 
 ##################Note to JOhn - Left Off at Mail Trap Send Verification Email Part. Supposed to Send to User... but sending to mail trap instead? Odd
 
-email = "anN0cmFzczMzQGdtYWlsLmNvbQ=="
-email_bytes = email.encode("ascii")
-email_bytes = base64.b64decode(email_bytes)
-email_string = email_bytes.decode("ascii")
 
-email_john=email_string
-
-emailp = "dnZkdnFmZ2Jld2ljZHVycA=="
-emailp_bytes = emailp.encode("ascii")
-  
-emailp_bytes = base64.b64decode(emailp_bytes)
-emailp_string = emailp_bytes.decode("ascii")
-
-emailp=emailp_string
 
 def send_verification_email(username):
     
 
-    global email_john
-    global emailp
+   
     
     #This finds the json file that contains the user information that the user just sumbmitted via the form
     print(username)
@@ -107,7 +93,7 @@ def send_verification_email(username):
     context = ssl.create_default_context()
     #Sends the email using the mail trap could service. I updated the login with my personal credentials provided by mail trap.
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-        server.login(email_john, emailp)
+        server.login(#Gmail account, #####need to add google creds - removed for security concerns)
         server.sendmail(sender, receiver, message.as_string())
 
     print("sent mail at the end of mail function")
