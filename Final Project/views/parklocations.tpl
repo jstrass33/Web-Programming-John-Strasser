@@ -42,7 +42,7 @@
         }
     </style>
    <script
-   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly&channel=2"
+   src="https://maps.googleapis.com/maps/api/js?key=     #removed API key for security reasons.                     &callback=initMap&libraries=&v=weekly&channel=2"
    async
    ></script>
     
